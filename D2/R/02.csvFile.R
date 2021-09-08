@@ -2,7 +2,7 @@ read.csv(file="./D2/data/popMove.csv")
 
 pop_move<-read.csv(file="./D2/data/popMove.csv")
 
-#맥의 경우 USC-8로 기본으로 읽기 때문에 마소의 기본인 euc-kr로 읽으라고 따로 설정해야 함.
+#맥의 경우 UTF-8로 기본으로 읽기 때문에 마소의 기본인 euc-kr로 읽으라고 따로 설정해야 함.
 #pop_move<-read.csv(file="./D2/data/popMove.csv",fileEncoding="euc-kr")
 
 head(pop_move)
