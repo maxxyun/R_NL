@@ -1,6 +1,6 @@
 # 독립 두 표본의 평균비교
 
-data <- read.csv(file="./D3/data/indep_t_test.csv",
+data <- read.csv(file="./R 기초초/D3/data/indep_t_test.csv",
                  header=TRUE)
 str(data)
 

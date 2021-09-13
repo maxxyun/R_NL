@@ -6,7 +6,7 @@ ggplot2::qplot()
 library(tidyverse)
 qplot()
 
-pi<-read.csv("./D2/data/PatientInfo.csv",
+pi<-read.csv("./R 기초/D2/data/PatientInfo.csv",
              header = TRUE,
              stringsAsFactors = FALSE)
 
