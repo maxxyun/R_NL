@@ -1,5 +1,5 @@
 # 독립표본 t검정
-data <- read.csv("./data/indep_t_test.csv")
+data <- read.csv("./D3/data/indep_t_test.csv")
 
 var.test( data$weight ~ data$gender )
 
@@ -19,7 +19,6 @@ t.test( paired$Prior, paired$Post,
 
 
 # 적합도 검정
-
 qchisq(0.95, df=3)
 1 - pchisq(0.470024, df=3)
 
