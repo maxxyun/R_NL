@@ -121,3 +121,74 @@ a_data <-data %>%
 
 #저장
 saveRDS(a_data, "./D4/data/a_data.rds")
+
+
+#교차분석 국가별 취험여부
+table(data$cntr_name,data$jobs)
+
+tab1<-table(data$cntr_name,data$jobs)
+
+#교차표 비율
+#전체 비율
+prop.table(tab1)
+
+#행 비율. 행이 100%. A 국가에 무직자와 취업자 비율
+prop.table(tab1, margin = 1)
+
+#열 비율. 열이 100%. 무직자 중 A국가와 B국가 비율
+prop.table(tab1, margin = 2)
+
+#퍼센트로
+100*prop.table(tab1, margin = 1)
+
+#반올림해서 소숫점 1자리로 표시
+round(100*prop.table(tab1, margin = 1),1)
+
+#DescTools 설치. 기초통계랑을 편하게 보여줌
+install.packages("DescTools")
+library(DescTools)
+
+PercTable(cntr_name~jobs, data=a_data,
+          rfrq="010", margin=1)         #rfrq=전체, 행, 열 on/off
+
+
+
+tab_age<-table(data$cntr_name,data$age_cat)
+tab_age
+
+#주사위를 12번 던졌다 치고 랜덤하게 나오게
+sample(1:6,12,replace = TRUE)
+table(sample(1:6,12,replace=TRUE))
+
+
+#카이제곱 검정. 범주형 자료들의 동일성 검정
+chisq.test(tab_age)     #열이 너무 많다. 나이대를 합치자
+
+#기대 빈도
+ta_result <-chisq.test(tab_age)
+ta_result$expected
+ta_result$observed
+ta_result$p.value
+names(ta_result)        #뭐가 있나 보자
+
+
+#거주기간
+a_data %>%
+    group_by(cntr_name) %>%
+    summarise(
+        m=mean(duration),
+        sd=sd(duration),
+        n=n()
+    )
+
+
+#두 집단의 평균 검정
+#분산의 동일성 검증
+var.test(a_data$duration~a_data$cntr_name)  #두 집단의 분산이 같지않음
+
+t.test(a_data$duration~a_data$cntr_name,
+       var.equal=FALSE,
+       alternative="two.sided")
+
+#범주형은 카이제곱 X^2
+#연속형 ttest
