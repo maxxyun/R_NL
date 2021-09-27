@@ -2,7 +2,7 @@ install.packages("showtext")
 library(showtext)
 
 font.add(family="KD",
-         reqular ="KoPub Dotum Medium.ttf")
+         reqular ="C:\\Windows\Fonts\KoPub Batang Medium.ttf")
 showtext_auto()
 
 library(tidyverse)
