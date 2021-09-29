@@ -1,6 +1,6 @@
 library( tidyverse )
 
-cn_jobs <- readRDS("./data/cn_jobs.rds")
+cn_jobs <- readRDS("./D5/data/cn_jobs.rds")
 
 str( cn_jobs )
 
@@ -10,3 +10,5 @@ levels( cn_jobs$type )
 
 model <- lm( income ~ education + women + prestige + type,
              data = cn_jobs )
+
+summary(model)

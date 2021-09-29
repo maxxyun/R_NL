@@ -1,4 +1,5 @@
 library(tidyverse)
+help (iris)
 
 # total mean
 m <- mean( iris$Sepal.Length )
@@ -65,6 +66,6 @@ mse
 mst <- bv / 2
 mst
 mst / mse
-
+# 분산분석 aov
 result <- aov( iris$Sepal.Length ~ iris$Species )
 summary( result )

@@ -1,4 +1,5 @@
 library( tidyverse )
+help (cars)
 # 회귀분석
 # 단순선형회귀분석
 
@@ -40,6 +41,7 @@ plot(model)
 
 # 종속변수 변환
 model2 <- lm( sqrt(dist) ~ speed, data = cars)
+model2
 summary( model2 )
 par(mfrow=c(1,1))
 plot( data = cars, sqrt(dist) ~ speed )
@@ -51,12 +53,16 @@ plot( model2 )
 
 # 영향력이 큰 데이터 확인
 cars[c(23, 35, 39) , ]
-
+fivenum(cars$dist)
+fivenum(cars$speed)
 
 # 원점을 지나는 회귀
+# 속도가 0인데 제동거리가 1.2가 나오면 말이 안됨
+# 회위 모형 안에 -1을 붙인다
 model3 <- lm( sqrt(dist) ~ speed - 1, data = cars)
 summary( model3 )
-
+# 스피드의 최대값가 최소값을 보임
+range(cars$speed)
 
 # 회귀분석 결과를 보다 깔끔하게 나타내기
 # install.packages("stargazer")

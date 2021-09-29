@@ -1,7 +1,7 @@
 # 다중선형회귀분석
 library( tidyverse )
 
-cn_jobs <- readRDS("./data/cn_jobs.rds")
+cn_jobs <- readRDS("./D5/data/cn_jobs.rds")
 
 # 변수간 상관 파악
 cn_jobs %>%
@@ -28,11 +28,14 @@ formula( m_s )
 # 전체 모형 비교
 # install.packages("leaps")
 library( leaps )
-m_rs <- regsubsets( income ~ education + women + prestige, 
+m_rs <- regsubsets(
+                    income ~ education + women + prestige,
                     data = cn_jobs )
 summary( m_rs )
-summary( m_rs )$bic
+summary( m_rs )$bic     #두번째가 -90으로 가장 작다
+                        #women, prestige만으로 그리자
 
+#표로 쉽게 표기
 plot( m_rs, scale="bic" )
 
 
