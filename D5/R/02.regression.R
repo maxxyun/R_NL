@@ -6,10 +6,12 @@ library( tidyverse )
 plot( data=cars, dist ~ speed )
 cor( cars$speed, cars$dist )
 
-# 회귀분석
+# 회귀분석 (선형 모형, Linear model)
 model <- lm( dist ~ speed, data = cars )
-names( model )
+model           #회귀식 distance = 3.932*speed - 17.579
+names( model )  #coefficients:계수, residuals:잔차
 coef( model )
+# 추세선 그리기
 abline( model, col="red", lty = 2 )
 
 summary( model )

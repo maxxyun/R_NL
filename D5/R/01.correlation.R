@@ -22,4 +22,3 @@ ggplot( a_data ) +
 # 상관계수와 상관계수 검정
 cor( a_data$B_mean, a_data$C_mean )
 cor.test( a_data$B_mean, a_data$C_mean )
-
