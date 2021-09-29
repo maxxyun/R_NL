@@ -4,7 +4,7 @@ library( showtext )
 font_add(family = "KD", regular = "KoPubWorld Dotum Medium.ttf")
 showtext_auto()
 
-a_data <- readRDS("./data/a_data.rds")
+a_data <- readRDS("./D5/data/a_data.rds")
 
 # 상호문화 이해와 가족관계의 산점도
 ggplot( a_data ) +
