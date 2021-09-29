@@ -1,0 +1,63 @@
+library( tidyverse )
+# 회귀분석
+# 단순선형회귀분석
+
+# 그림부터...
+plot( data=cars, dist ~ speed )
+cor( cars$speed, cars$dist )
+
+# 회귀분석
+model <- lm( dist ~ speed, data = cars )
+names( model )
+coef( model )
+abline( model, col="red", lty = 2 )
+
+summary( model )
+
+# 회귀식에 의한 추정 직선 표현 
+ggplot( cars, aes( speed, dist ) ) +
+  geom_point(  ) +
+  geom_smooth( method="lm", se=FALSE, col="red") +
+  labs( x = "Speed(mile per hour)", 
+        y = "Distance(ft.)" ) +
+  theme_minimal()
+
+# 또 다른 방법
+ggplot( cars, aes( speed, dist) ) +
+  geom_point(  ) +
+  geom_abline( col="red", 
+               intercept = coef(model)[1],  
+               slope = coef(model)[2]) +
+  labs( x = "Speed(mile per hour)", 
+        y = "Distance(ft.)" ) +
+  theme_minimal()
+
+# 회귀진단
+par( mfrow=c(2, 2) )
+plot(model)
+
+# 종속변수 변환
+model2 <- lm( sqrt(dist) ~ speed, data = cars)
+summary( model2 )
+par(mfrow=c(1,1))
+plot( data = cars, sqrt(dist) ~ speed )
+abline( model2, col="red", lty=2 )
+
+# 회귀진단
+par( mfrow=c(2,2) )
+plot( model2 )
+
+# 영향력이 큰 데이터 확인
+cars[c(23, 35, 39) , ]
+
+
+# 원점을 지나는 회귀
+model3 <- lm( sqrt(dist) ~ speed - 1, data = cars)
+summary( model3 )
+
+
+# 회귀분석 결과를 보다 깔끔하게 나타내기
+# install.packages("stargazer")
+library(stargazer)
+stargazer( model2, type="text")
+stargazer( model3, type="text")
