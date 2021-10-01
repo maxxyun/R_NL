@@ -85,6 +85,15 @@ data.frame( word = n_words ) %>%
   filter( str_length( word ) > 1 ) %>%
   mutate( nxt_word = lead(word) )
 
+x<-c(1,3,-2,4)
+lead(x)
+
+x<-"Hi"
+y<-"there"
+x
+y
+paste(x,y,sep='->')
+
 
 # 두 단어 합치기
 data.frame( word = n_words ) %>%
@@ -94,6 +103,11 @@ data.frame( word = n_words ) %>%
   mutate( bi_gram = paste( word, nxt_word, sep='-') ) %>%
   count( bi_gram, sort = TRUE)
 
+# 분리하고 저장 ','를 기준으로 w1과 w2로 분리
+data.frame(word="1-2,3") %>%
+separate(word,c("w1","w2"),sep=",")
+
+
 # -를 기준으로 분리하고 저장 : separate()
 data.frame( word = n_words ) %>%
   filter( str_length( word ) > 1 ) %>%
@@ -102,6 +116,9 @@ data.frame( word = n_words ) %>%
   mutate( bi_gram = paste( word, nxt_word, sep="-") ) %>%
   count( bi_gram, sort = TRUE) %>%
   separate( bi_gram, c("word", "nxt_word"), sep="-") -> bi_gram_df
+
+bi_gram_df
+
 
 # library( ggraph )
 # library( tidygraph )
