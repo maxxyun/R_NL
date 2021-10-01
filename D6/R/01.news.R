@@ -4,7 +4,7 @@ library( KoNLP )
 library( ggraph )
 library( tidygraph )
 
-news <- read_excel("./data/news.xlsx")
+news <- read_excel("./D6/data/news.xlsx")
 articles <- news$본문
 
 articles
@@ -23,7 +23,12 @@ atc[1:3]
 
 # 명사 추출하기
 SimplePos09("태극기가 바람에 펄럭입니다")
+SimplePos22("태극기가 바람에 펄럭입니다다")
+
 extractNoun("태극기가 바람에 펄럭입니다")
+
+extractNoun(c("태극극기가 바람에 펄럭입니다",
+              "안녕하세요 국립중앙도서관 입니다"))
 
 atc_nouns <- extractNoun( atc )
 str( atc_nouns )
