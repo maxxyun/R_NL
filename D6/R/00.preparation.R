@@ -21,8 +21,10 @@ remotes::install_github('haven-jeon/KoNLP', upgrade = "never", INSTALL_opts=c("-
 library( tidyverse )
 library( readxl )
 library( KoNLP )
+install.packages(c("ggraph", "tidygraph"))
 library( ggraph )
 library( tidygraph )
 
-
 useNIADic()
+1
+1
