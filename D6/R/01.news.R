@@ -13,7 +13,7 @@ useNIADic()
 
 # 사전 정리
 # stopwords : 분석에서 사용할 단어
-swords <- "해서|하면|하지|들이|당시|생각|경우|하게|때문|하기"
+swords <- "해서|하면|하지|들이|당시|생각|경우|하게|때문|하기|메타버스"
 atc <- str_replace_all( articles, swords, " ")
 
 # 한글만 사용하기
@@ -35,6 +35,7 @@ str( atc_nouns )
 
 # 리스트로 된 결과를 문자열 벡터로 만들기
 n_words <- simplify( atc_nouns )
+n_words
 
 # 문자열 길이 : str_length()
 str_length( n_words )
@@ -47,17 +48,35 @@ count( tibble( ex = c("a", "b", "a", "e", "b", "b") ),
        ex, sort = TRUE)
 
 # 단어가 두 글자 이상인것만 사용
-data.frame( word = n_words ) %>%
-  filter( str_length( word ) > 1) %>%
-  count( word, sort=TRUE )
+data.frame( word = n_words ) %>%      #n_words로 simplify해서 데이터프레임으로
+  filter( str_length( word ) > 1) %>% #문자열이 1개 초과인거 필터
+  count( word, sort=TRUE )            #글자수 많이 나온것 부터 표시
 
 # 워드클라우드를 위한 패키지 : wordcloud2
+install.packages("wordcloud2")
 library( wordcloud2 )
 
 data.frame( word = n_words ) %>%
   filter( str_length( word ) > 1) %>%
   count( word, sort=TRUE ) %>%
   wordcloud2()
+
+#글자 크기 조정
+data.frame( word = n_words ) %>%
+  filter( str_length( word ) > 1) %>%
+  count( word, sort=TRUE ) %>%
+  wordcloud2(size=0.8)
+
+#빈도 조정
+data.frame( word = n_words ) %>%
+  filter( str_length( word ) > 1) %>%
+  count( word, sort=TRUE ) %>%
+  filter(n>1) %>%
+  wordcloud2(size=0.8, color='random-light')
+
+# 워드클라우드 도움말
+?wordcloud2
+
 
 
 # 인접한 단어쌍 찾기 (bi-gram)
