@@ -18,10 +18,11 @@ install.packages( "remotes" )
 remotes::install_github('haven-jeon/KoNLP', upgrade = "never", INSTALL_opts=c("--no-multiarch"))
 
 
+install.packages(c("ggraph", "tidygraph"))
+
 library( tidyverse )
 library( readxl )
 library( KoNLP )
-install.packages(c("ggraph", "tidygraph"))
 library( ggraph )
 library( tidygraph )
 
